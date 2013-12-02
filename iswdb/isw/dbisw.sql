@@ -3,36 +3,48 @@
 
 DROP TABLE IF EXISTS Formacion;
 DROP TABLE IF EXISTS CargoAcademico;
+DROP TABLE IF EXISTS LineasDeDesarrolloDocente;
 DROP TABLE IF EXISTS Participacion;
 DROP TABLE IF EXISTS Academico;
 DROP TABLE IF EXISTS Carrera;
 DROP TABLE IF EXISTS Departamento;
-DROP TABLE IF EXISTS Facultad;
 DROP TABLE IF EXISTS TrabajoActual;
-DROP TABLE IF EXISTS LineasDeDesarrolloDocente;
+DROP TABLE IF EXISTS Facultad;
 
 
 
 
 /* Create Tables */
 
-CREATE TABLE Departamento
+CREATE TABLE Formacion
 (
-	ID_Departamento serial NOT NULL,
-	nombre varchar(250),
-	ID_Facultad int NOT NULL UNIQUE,
-	PRIMARY KEY (ID_Departamento)
+	ID_Formacion bigint NOT NULL UNIQUE,
+	NombreInstitucion varchar(250),
+	tipoFormacion varchar(250),
+	fechaInicio date,
+	fechaFin date,
+	ID_Academico int NOT NULL UNIQUE,
+	titulo bytea,
+	PRIMARY KEY (ID_Formacion)
 ) WITHOUT OIDS;
 
 
-CREATE TABLE Facultad
+CREATE TABLE Academico
 (
-	ID_Facultad serial NOT NULL UNIQUE,
-	Nombre varchar(250),
-	direccion varchar(250),
-	comuna varchar(250),
-	telefono varchar(250),
-	PRIMARY KEY (ID_Facultad)
+	ID_Academico serial NOT NULL UNIQUE,
+	Nombre varchar(250) NOT NULL,
+	ID_LineasDeDesarrolloDocente serial NOT NULL,
+	Rut int NOT NULL UNIQUE,
+	Telefono varchar(250),
+	Funcion varchar(250),
+	Jornada varchar(250),
+	Region varchar(250),
+	Ciudad varchar(250),
+	Jerarquia varchar(250),
+	fDeNacimiento date,
+	ID_Departamento int NOT NULL,
+	ID_TrabajoActual int NOT NULL UNIQUE,
+	PRIMARY KEY (ID_Academico)
 ) WITHOUT OIDS;
 
 
@@ -47,35 +59,21 @@ CREATE TABLE Carrera
 ) WITHOUT OIDS;
 
 
-CREATE TABLE Academico
+CREATE TABLE Departamento
 (
-	ID_Academico serial NOT NULL UNIQUE,
-	Nombre varchar(250) NOT NULL,
-	ID_LineaDeDesarrolloDocente int NOT NULL,
-	Rut int NOT NULL UNIQUE,
-	Telefono varchar(250),
-	Funcion varchar(250),
-	Jornada varchar(250),
-	Region varchar(250),
-	Ciudad varchar(250),
-	Jerarquia varchar(250),
-	fDeNacimiento date,
-	ID_Departamento int NOT NULL,
-	ID_TrabajoActual int NOT NULL UNIQUE,
-	ID_LineaDeDesarrolloDocente int NOT NULL UNIQUE,
-	PRIMARY KEY (ID_Academico)
+	ID_Departamento serial NOT NULL,
+	nombre varchar(250),
+	ID_Facultad int NOT NULL UNIQUE,
+	PRIMARY KEY (ID_Departamento)
 ) WITHOUT OIDS;
 
 
-CREATE TABLE Formacion
+CREATE TABLE CargoAcademico
 (
-	ID_Formacion bigint NOT NULL UNIQUE,
-	NombreInstitucion varchar(250),
-	tipoFormacion varchar(250),
-	fechaInicio date,
-	fechaFin date,
-	ID_Academico int NOT NULL UNIQUE,
-	PRIMARY KEY (ID_Formacion)
+	ID_CargoAcademico serial NOT NULL UNIQUE,
+	cargo varchar(250),
+	institucion varchar(250),
+	ID_Academico int NOT NULL UNIQUE
 ) WITHOUT OIDS;
 
 
@@ -90,12 +88,15 @@ CREATE TABLE TrabajoActual
 ) WITHOUT OIDS;
 
 
-CREATE TABLE CargoAcademico
+CREATE TABLE Facultad
 (
-	ID_CargoAcademico serial NOT NULL UNIQUE,
-	cargo varchar(250),
-	institucion varchar(250),
-	ID_Academico int NOT NULL UNIQUE
+	ID_Facultad serial NOT NULL UNIQUE,
+	Nombre varchar(250),
+	direccion varchar(250),
+	comuna varchar(250),
+	telefono varchar(250),
+	jefeDeFacultad varchar(250),
+	PRIMARY KEY (ID_Facultad)
 ) WITHOUT OIDS;
 
 
@@ -112,14 +113,47 @@ CREATE TABLE Participacion
 
 CREATE TABLE LineasDeDesarrolloDocente
 (
-	ID_LineaDeDesarrolloDocente int NOT NULL UNIQUE,
+	ID_LineasDeDesarrolloDocente serial NOT NULL,
 	Nombre varchar(250),
-	PRIMARY KEY (ID_LineaDeDesarrolloDocente)
+	ID_Academico int NOT NULL UNIQUE,
+	PRIMARY KEY (ID_LineasDeDesarrolloDocente)
 ) WITHOUT OIDS;
 
 
 
 /* Create Foreign Keys */
+
+ALTER TABLE CargoAcademico
+	ADD FOREIGN KEY (ID_Academico)
+	REFERENCES Academico (ID_Academico)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE Formacion
+	ADD FOREIGN KEY (ID_Academico)
+	REFERENCES Academico (ID_Academico)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE LineasDeDesarrolloDocente
+	ADD FOREIGN KEY (ID_Academico)
+	REFERENCES Academico (ID_Academico)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
+
+ALTER TABLE Participacion
+	ADD FOREIGN KEY (ID_Academico)
+	REFERENCES Academico (ID_Academico)
+	ON UPDATE RESTRICT
+	ON DELETE RESTRICT
+;
+
 
 ALTER TABLE Academico
 	ADD FOREIGN KEY (ID_Departamento)
@@ -137,38 +171,6 @@ ALTER TABLE Carrera
 ;
 
 
-ALTER TABLE Departamento
-	ADD FOREIGN KEY (ID_Facultad)
-	REFERENCES Facultad (ID_Facultad)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE Formacion
-	ADD FOREIGN KEY (ID_Academico)
-	REFERENCES Academico (ID_Academico)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE CargoAcademico
-	ADD FOREIGN KEY (ID_Academico)
-	REFERENCES Academico (ID_Academico)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
-ALTER TABLE Participacion
-	ADD FOREIGN KEY (ID_Academico)
-	REFERENCES Academico (ID_Academico)
-	ON UPDATE RESTRICT
-	ON DELETE RESTRICT
-;
-
-
 ALTER TABLE Academico
 	ADD FOREIGN KEY (ID_TrabajoActual)
 	REFERENCES TrabajoActual (ID_TrabajoActual)
@@ -177,9 +179,9 @@ ALTER TABLE Academico
 ;
 
 
-ALTER TABLE Academico
-	ADD FOREIGN KEY (ID_LineaDeDesarrolloDocente)
-	REFERENCES LineasDeDesarrolloDocente (ID_LineaDeDesarrolloDocente)
+ALTER TABLE Departamento
+	ADD FOREIGN KEY (ID_Facultad)
+	REFERENCES Facultad (ID_Facultad)
 	ON UPDATE RESTRICT
 	ON DELETE RESTRICT
 ;
