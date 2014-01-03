@@ -1,0 +1,77 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class regiones extends CI_Model
+{
+
+
+    public function get_region($id_region) {
+				$this->load->database();				
+                if ($Region == 1){
+                  $this->db->select('pk, regiones');
+                  $this->db->from('regiones');
+                   $this->db->where('pk', $id_region);
+                  $query = $this->db->get();
+                  foreach($query->result_array() as $row){
+                      $data[$row['pk']]=$row['nombre'];               
+					}
+				}
+                else {
+                   $this->db->select('id_estado, estado');
+                   $this->db->from('estados');
+                   $this->db->where('id_pais', $id_pais);
+                   $query = $this->db->get();
+                   foreach($query->result_array() as $row){
+                       $data[$row['pk']]=$row['nombre'];               
+                   }
+                }
+                return $data;
+   }
+
+           public function get_provincias($id_provincias) {
+                $this->load->database();				
+				if ($provincia == 1){
+                  $this->db->select('pk, nombre');
+                  $this->db->from('provincias');
+                   $this->db->where('pk', $id_provincias);
+                  $query = $this->db->get();
+                  foreach($query->result_array() as $row){
+                      $data[$row['pk']]=$row['nombre'];               
+                  }
+            }
+                else {
+                   $this->db->select('pk, nombre');
+                   $this->db->from('ciudades');
+                   $this->db->where('pk', $id_provincias);
+                   $query = $this->db->get();
+                   foreach($query->result_array() as $row){
+                       $data[$row['pk']]=$row['nombre'];               
+                   }
+                }
+                return $data;
+           }
+
+              public function get_comunas($id_comunas) {
+                $this->load->database();        
+              if ($comuna == 1){
+                  $this->db->select('pk, nombre');
+                  $this->db->from('comunas');
+                   $this->db->where('pk', $id_comunas);
+                  $query = $this->db->get();
+                  foreach($query->result_array() as $row){
+                      $data[$row['pk']]=$row['nombre'];               
+                  }
+            }
+                else {
+                   $this->db->select('pk, nombre');
+                   $this->db->from('comunas');
+                   $this->db->where('pk', $id_comunas);
+                   $query = $this->db->get();
+                   foreach($query->result_array() as $row){
+                       $data[$row['pk']]=$row['nombre'];               
+                   }
+                }
+                return $data;
+           }
+
+
+}

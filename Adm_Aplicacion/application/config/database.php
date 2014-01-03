@@ -48,12 +48,14 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = '';
-$db['default']['password'] = '';
-$db['default']['database'] = '';
-$db['default']['dbdriver'] = 'mysql';
-$db['default']['dbprefix'] = '';
+$db['default']['hostname'] = '146.83.181.4';
+$db['default']['username'] = 'grupo03';
+$db['default']['password'] = 'grupo03';
+$db['default']['port'] = '6432';
+$db['default']['schema'] = 'grupo03';
+//$db['default'] = array('schema'=>'grupo03');
+$db['default']['database'] = 'iswdb';
+$db['default']['dbdriver'] = 'postgre';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
 $db['default']['cache_on'] = FALSE;
