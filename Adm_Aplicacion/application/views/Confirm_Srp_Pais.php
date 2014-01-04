@@ -31,14 +31,14 @@
                             <div class="grid_2" id="nombre<?=$dato->pk?>"><?=$dato->nombre?></div>
                             <div class="grid_2" id="alfa_dos<?=$dato->pk?>"><?=$dato->alfa_dos?></div>
                             <div class="grid_2" id="alfa_tres<?=$dato->pk?>"><?=$dato->alfa_tres?></div>
-                            <div class="grid_2" id="eliminar"><input type="button" value="Eliminar" id="<?=$dato->pk?>" class="eliminar" onclick="location.href='paises/Confirmar/<?=$dato->pk?>'"></div>
-                            <div class="grid_2" id="editar"><input type="button" value="Editar" id="<?=$dato->pk?>" class="editar" onclick="location.href='paises/Editar/<?=$dato->pk?>'"></div>
+                            <div class="grid_2" id="eliminar"><input type="button" value="Cancelar" id="<?=$dato->pk?>" class="eliminar" onclick="location.href='retorno'"></div>
+                            <div class="grid_2" id="editar"><input type="button" value="Aceptar" id="<?=$dato->pk?>" class="editar" onclick="location.href='aceptar/<?= $dato->pk ?>'"></div>
                         </div>
                 <?php
                 endforeach;
                 ?>
             
-            <div class="grid_12" id="agregar"><input type="button" value="Añadir"  class="agregar" onclick="location.href='paises/Insertar'"></div>
+            
             
         </div>
     </div>

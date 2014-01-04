@@ -25,10 +25,84 @@ Class Paises extends CI_CONTROLLER
         $this->load->view('paises',compact("datos"));
     }
     
-    public function recibir() {
-        $link = $this->input->Yan;
-        redirect($link);
+    public function Confirmar() {
+        $data['segmento'] = $this->uri->segment(3);
+        if($data['segmento'] == 'retorno')
+        {
+            redirect(paises);
+        }
+        else
+        {
+            if($data['segmento'] == 'aceptar')
+            {
+                $data['id'] = $this->uri->segment(4);
+                redirect('paises/Eliminar/'.$data['id']);
+            }
+            else
+            {
+                $datos = $this->paises_model->getPais($data['segmento']);
+                $this->load->view('Confirm_Srp_Pais',compact("datos"));
+            }
+        }   
+    }
+    
+    public function Eliminar() {
+        $data['segmento'] = $this->uri->segment(3);
+        $delete = $this->paises_model->Delete($data['segmento']);
+        redirect('paises'); 
+    }
+    
+    public function Agregar(){
+        $data = array(
+            'nombre'    => $this->input->post('nombre'),
+            'codigo'    => $this->input->post('codigo'),
+            'alfa2'     => $this->input->post('alfa2'),
+            'alfa3'     => $this->input->post('alfa3')
+        );
+        $datos = array(
+            'nombre'    => strtoupper($data['nombre']),
+            'codigo'    => strtoupper($data['codigo']),
+            'alfa2'     => strtoupper($data['alfa2']),
+            'alfa3'     => strtoupper($data['alfa3'])
+        );
+        $this->paises_model->Crear($datos);
+        redirect('paises');
+    }
+
+    public function Insertar() {
+        $this->load->view('AgregarPais');
         
+    }
+    
+    public function Editar() {
+        $data['id'] = $this->uri->segment(3);
+        $datos = $this->paises_model->getPais($data['id']);
+        $this->load->view('EditarPais',compact("datos"),$data['id']);
+    }
+    
+    public function Update() {
+        $data = array(
+            'id'        => $this->uri->segment(3),
+            'nombre'    => $this->input->post('nombre'),
+            'codigo'    => $this->input->post('codigo'),
+            'alfa2'     => $this->input->post('alfa2'),
+            'alfa3'     => $this->input->post('alfa3')
+        );
+        $data = array(
+            'nombre'    => $this->input->post('nombre'),
+            'codigo'    => $this->input->post('codigo'),
+            'alfa2'     => $this->input->post('alfa2'),
+            'alfa3'     => $this->input->post('alfa3')
+        );
+        $datos = array(
+            'id'        => $data['id'],
+            'nombre'    => strtoupper($data['nombre']),
+            'codigo'    => strtoupper($data['codigo']),
+            'alfa2'     => strtoupper($data['alfa2']),
+            'alfa3'     => strtoupper($data['alfa3'])
+        );
+        $this->paises_model->Update($datos);
+        redirect('paises');
     }
 
     /*public function usando_result_array()
