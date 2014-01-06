@@ -4,6 +4,7 @@ class paises_model extends CI_Model {
     function __construct()
     {
         parent::__construct();
+        $this->load->database('default');
     }
     public function getPaises()
     {
@@ -21,6 +22,15 @@ class paises_model extends CI_Model {
         ->select("pk,cod_num,nombre,alfa_dos,alfa_tres")
         ->from("paises")
         ->where('pk',$id)
+        ->get();
+        return $query->result();
+    }
+
+    public function getNombrePais()
+    {
+        $query=$this->db
+        ->select("pk,nombre")
+        ->from("paises")
         ->get();
         return $query->result();
     }
@@ -53,5 +63,25 @@ class paises_model extends CI_Model {
                     'alfa_dos' => $data['alfa2'],
                     'nombre' => $data['nombre']
                 ));
+    }
+
+    public function getPaisByName($nombre)
+    {
+        $query=$this->db
+        ->select("pk,cod_num,nombre,alfa_dos,alfa_tres")
+        ->from("paises")
+        ->where('nombre',$nombre)
+        ->get();
+        return $query->result();
+    }
+
+    public function getId($nombre)
+    {
+        $query=$this->db
+        ->select("pk")
+        ->from("paises")
+        ->where('nombre',$nombre)
+        ->get();
+        return $query->result();
     }
 }
