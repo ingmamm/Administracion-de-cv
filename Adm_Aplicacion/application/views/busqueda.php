@@ -58,6 +58,7 @@
             <br>
             <br>
             <select style="width:200px">
+                <option value="caso_0"> </option>
                 <option value="caso1">Depende del de arriba</option>
             </select>
             <br>
