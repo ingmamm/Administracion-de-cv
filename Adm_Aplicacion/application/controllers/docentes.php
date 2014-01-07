@@ -39,6 +39,21 @@ class Docentes extends CI_Controller {
                     if($opcion == "Opciones"){
                         redirect('formacion/index/'.$id);
                     }
+                    else
+                    {
+                        if($opcion == "Ver")
+                        {
+                            redirect('Docentes/publico/'.$id);
+                        }
+                        else
+                        {
+                            if($opcion == "Volver")
+                            {
+                                $datos = $this->DocentesModelo->getDocentes();
+                                $this->load->view('busqueda',compact("datos"));
+                            }
+                        }
+                    }
                 }
     		}
     	}
@@ -204,6 +219,14 @@ class Docentes extends CI_Controller {
         $jornada = $this->input->post('jornada');
         $datos = $this->DocentesModelo->getJornadas($jornada);
         $this->load->view('busqueda',compact("datos"));
+    }
+
+    public function publico()
+    {
+        $id = $this->uri->segment(3);
+        $datos = $this->DocentesModelo->getDocente($id);
+        $this->load->view('Docente/head');
+        $this->load->view('Docente/publico',compact("datos"));
     }
 } 
 
