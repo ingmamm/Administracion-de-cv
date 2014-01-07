@@ -1,4 +1,5 @@
-	<h1>Nuevo Docente</h1>
+	<div id="Docente">
+    <h1>Nuevo Docente</h1>
 	<?= form_open('Docentes/nuevo') ?>
 
 	<?php
@@ -157,6 +158,6 @@
     <?= form_submit('','Enviar') ?>
 
     <?= form_close() ?>
-
+    </div>
 	</body>
 </html>
