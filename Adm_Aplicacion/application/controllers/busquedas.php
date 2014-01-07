@@ -13,7 +13,7 @@ Class Busquedas extends CI_CONTROLLER
         //cargamos la librería form_validation
         $this->load->library(array('form_validation'));
         //cargamos el modelo crud_model
-        $this->load->model('paises_model');
+        $this->load->model('docentesModelo');
  
     }
  
@@ -21,7 +21,7 @@ Class Busquedas extends CI_CONTROLLER
     public function index()
     {
         $titulo = "Busqueda";
-        $datos=$this->paises_model->getPaises();
+        $datos=$this->docentesModelo->getDocentes();
         $this->load->view('Busqueda',compact("datos","titulo"));
     }
 
