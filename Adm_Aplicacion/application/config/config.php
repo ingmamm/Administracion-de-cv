@@ -224,7 +224,7 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'e4147ccb86e69632694077f37a56ae9b3e72513d8a9e75a2951a8c3319c81bb4';
 
 /*
 |--------------------------------------------------------------------------
@@ -360,3 +360,6 @@ $config['proxy_ips'] = '';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
+$config['dirdoc_ws_url'] = 'http://informatica.utem.cl:8011/dirdoc-auth/ws/auth?wsdl';
+$config['dirdoc_ws_user'] = 'vsoto';
+$config['dirdoc_ws_password'] = '9a21e1c7d6ae6986d1f39adf8b4a8bfffd03a47a';
