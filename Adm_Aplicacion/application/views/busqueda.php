@@ -80,7 +80,7 @@
                             <div class="grid_2" id="nombre<?=$dato->pk?>"><?=$dato->apellidos?></div>
                             <div class="grid_2" id="alfa_dos<?=$dato->pk?>"><?=$dato->rut?></div>
                             <br>
-                            <div class="grid_2" id="eliminar"><input type="submit" name= "boton" value="Ver" id="<?=$dato->pk?>" class="eliminar"></div>
+                            
                             
                         </div>
                 <?= form_close() ?>
