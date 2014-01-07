@@ -1,4 +1,5 @@
-	<h1>Editar Docente</h1>
+	<div id= "Docente">
+    <h1>Editar Docente</h1>
     <?php
         foreach($datos as $dato):
     ?>
@@ -188,5 +189,6 @@
     <?= form_submit('','Enviar') ?>
 
     <?= form_close() ?>
+    </div>
 	</body>
 </html>
