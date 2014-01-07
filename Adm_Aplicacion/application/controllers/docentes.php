@@ -12,7 +12,7 @@ class Docentes extends CI_Controller {
 		$this->load->model('DocentesModelo');
 		$this->load->model('departamentos_model');
 		$this->load->model('comunas_model');
-        $this->session_id = $this->session->userdata('usuarios/login');
+        $this->session_id = $this->session->userdata('login','permiso');
     }
 
     public function index()
