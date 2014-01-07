@@ -33,6 +33,7 @@ class Usuarios extends CI_Controller {
             $pass = strtoupper($pass);
             $pass=(hash('sha256',$pass));
             $respuesta=$this->ws_dirdoc->autenticar($rut,$pass);
+            $permiso=$this->usuarios_model->permiso($this->input->post("login"));
             
             if($respuesta)  
             {
@@ -43,12 +44,13 @@ class Usuarios extends CI_Controller {
                 //die(sha1($this->input->post("pass",true)));
                 $datos=$this->usuarios_model->logueo( $this->input->post("login"));
                 //echo $datos;exit;
-               // $permiso=$this->usuarios_model->permiso($this->input->post("login"));
+               
                    if($datos==1 )
                    {    
                        
-                        $this->session->set_userdata("taller_ci");
+                        
                         $this->session->set_userdata('login', $this->input->post('login',true));
+                        $this->session->set_userdata('permiso',$permiso);
                         redirect(base_url().'docentes');
                         
                   
