@@ -82,5 +82,15 @@ class DocentesModelo extends CI_Model {
         return $this->db->delete('docentes');
     }
 
+    public function getJornadas ($jornada)
+    {
+    	$this->db->where('jornada',$jornada);
+    	$query=$this->db
+        ->select("*")
+        ->from("docentes")
+        ->get();
+        return $query->result();
+    }
+
 }
 ?>

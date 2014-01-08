@@ -198,4 +198,13 @@ class Docentes extends CI_Controller {
     	$datos = $this->DocentesModelo->getDocente($id);
     	$this->load->view('Docente/Eliminar',compact("datos"));
     }
+
+    public function Buscar()
+    {
+        $jornada = $this->input->post('jornada');
+        $datos = $this->DocentesModelo->getJornadas($jornada);
+        $this->load->view('busqueda',compact("datos"));
+    }
 } 
+
+

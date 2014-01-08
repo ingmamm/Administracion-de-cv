@@ -2,9 +2,7 @@
 <html lang="es">
 <head>
     <title>
-        <?php
-            echo $titulo;
-        ?>
+        Busqueda
     </title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>css/960.css" media="screen" />
@@ -16,9 +14,7 @@
 <body>
  
   <div class="container_12">
-        <h1> <?php
-                echo $titulo;
-            ?>
+        <h1> Busqueda
         </h1>
         <div id = "Principal">
             <br>
@@ -43,10 +39,13 @@
             <br>
             <br>
             <br>
-            <select  style= "width:200px">
-                <option value = "Jornada1">Jornada Completa</option>
-                <option value = "Jornada2">Jornada Part Time</option>
-                <option value = "Jornada3">Jornada por Horas</option>
+
+            <?= form_open('Docentes/Buscar/') ?>
+
+            <select  name = "jornada" style= "width:200px">
+                <option name= jornada value="Jornada Completa">  Jornada Completa </option>
+                <option name= jornada value="Media Jornada">  Media Jornada </option>
+                <option name= jornada value="Por Horas">  Por Horas  </option>
             </select>
             <br>
             <br>
@@ -63,9 +62,11 @@
             </select>
             <br>
             <br>
-            &nbsp <button>Buscar</button>
+            &nbsp <input type="submit" name= "boton" value="Buscar">
             <br>
             <br>
+
+            <?= form_close() ?>
         </div>
         <?php
                 foreach($datos as $dato):
