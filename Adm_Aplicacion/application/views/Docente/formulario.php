@@ -37,21 +37,6 @@
     		'placeholder' => 'Ingrese email'
     	);
 
-    	$jerarquia = array(
-    		'name' => 'jerarquia',
-    		'placeholder' => 'Ingrese jerarquia docente'
-    	);
-
-    	$contrato = array(
-    		'name' => 'contrato',
-    		'placeholder' => 'Ingrese contrato'
-    	);
-
-    	$jornada = array(
-    		'name' => 'jornada',
-    		'placeholder' => 'Ingrese jornada laboral'
-    	);
-
     	$grado = array(
     		'name' => 'grado',
     		'placeholder' => 'Ingrese N° de grado'
@@ -134,17 +119,28 @@
 		<?php endforeach; ?>
 	</select> <br><br>
 
-    <?= form_error('jerarquia') ?>
-    <?= form_label('Jerarquia: ','jerarquia') ?>
-    <?= form_input($jerarquia) ?> <br><br>
+    Jerarquia:
+    <select name = jerarquia>
+            <option name= jerarquia value=Titular>  Titular  </option>
+            <option name= jerarquia value=Asociado>  Asociado  </option>
+            <option name= jerarquia value=Asistente>  Asistente  </option>
+            <option name= jerarquia value=Instructor>  Instructor  </option>
+            <option name= jerarquia value=NoAsociado>  No Asociado  </option>
+    </select> <br><br>
 
-    <?= form_error('contrato') ?>
-    <?= form_label('Contrato: ','contrato') ?>
-    <?= form_input($contrato) ?> <br><br>
+    Contrato:
+    <select name = contrato>
+            <option name= contrato value=Planta>  Planta </option>
+            <option name= contrato value=AContrata>  A contrata  </option>
+            <option name= contrato value=Honorarios>  Honorarios  </option>
+    </select> <br><br>
 
-    <?= form_error('jornada') ?>
-    <?= form_label('Jornada: ','jornada') ?>
-    <?= form_input($jornada) ?> <br><br>
+    Jornada:
+    <select name = jornada>
+            <option name= jornada value="Jornada Completa">  Jornada Completa </option>
+            <option name= jornada value="Media Jornada">  Media Jornada </option>
+            <option name= jornada value="Por Horas">  Por Horas  </option>
+    </select> <br><br>
 
     <?= form_error('grado') ?>
     <?= form_label('Grado: ','grado') ?>

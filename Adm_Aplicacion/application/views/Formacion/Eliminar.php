@@ -11,41 +11,37 @@
     
 <body>
  
-    
   <div class="container_12">
-        <h1>Docentes</h1>
+        <h1>Eliminar datos</h1>
         <div class="grid_12">
             <div class="grid_12" id="head">
                 <div class="grid_2" id="head_nombre">Pk</div>
-                <div class="grid_2" id="head_nombre">Nombres</div>
-                <div class="grid_3" id="head_email">Apellidos</div>
-                <div class="grid_2" id="head_registro">RUT</div>
+                <div class="grid_2" id="head_nombre">Titulo</div>
+                <div class="grid_3" id="head_email">Grado</div>
+                <div class="grid_2" id="head_registro">Institucion</div>
            </div>
                 <?php
                 foreach($datos as $dato):
                 ?>
-                <?= form_open('Docentes/option/'.$dato->pk) ?>
-
+                <?= form_open('formacion/Confirmar/'.$dato->pk) ?>
                         <div class="grid_12" id="body">
                             <div class="grid_2" id="pk<?=$dato->pk?>"><?=$dato->pk?></div>
-                            <div class="grid_3" id="cod_num<?=$dato->pk?>"><?=$dato->nombres?></div>
-                            <div class="grid_2" id="nombre<?=$dato->pk?>"><?=$dato->apellidos?></div>
-                            <div class="grid_2" id="alfa_dos<?=$dato->pk?>"><?=$dato->rut?></div>
+                            <div class="grid_3" id="cod_num<?=$dato->pk?>"><?=$dato->titulo?></div>
+                            <div class="grid_2" id="nombre<?=$dato->pk?>"><?=$dato->grado_fk?></div>
+                            <div class="grid_2" id="alfa_dos<?=$dato->pk?>"><?=$dato->institucion_fk?></div>
                             <br>
-                            <div class="grid_2" id="eliminar"><input type="submit" name= "boton" value="Eliminar" id="<?=$dato->pk?>" class="eliminar"></div>
-                            <div class="grid_2" id="editar"><input type="submit" name= "boton" value="Editar" id="<?=$dato->pk?>" class="editar"></div>
-                            <div class="grid_2" id="opciones"><input type="submit" name= "boton" value="Opciones" id="<?=$dato->pk?>" class="editar"></div>
+                            <div class="grid_2" id="eliminar"><input type="submit" value="Cancelar" name="boton" id="<?=$dato->pk?>" class="eliminar"></div>
+                            <div class="grid_2" id="editar"><input type="submit" value="Aceptar" name="boton" id="<?=$dato->pk?>" class="editar"></div>
                         </div>
                 <?= form_close() ?>
                 <?php
                 endforeach;
                 ?>
-            <?= form_open('Docentes/option/') ?>
-
-            <div class="grid_12" id="agregar"><input type="submit" name= "boton" value="Agregar"  class="agregar" ></div>
+            
+            
             
         </div>
     </div>
-   <?= form_close() ?>
+   
 </body>
 </html>

@@ -34,6 +34,12 @@ class Docentes extends CI_Controller {
     			if ($opcion == "Eliminar") {
     				redirect('Docentes/Eliminar/'.$id);
     			}
+                else
+                {
+                    if($opcion == "Opciones"){
+                        redirect('formacion/index/'.$id);
+                    }
+                }
     		}
     	}
     }
