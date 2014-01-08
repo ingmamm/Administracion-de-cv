@@ -46,25 +46,21 @@ class Usuarios extends CI_Controller {
             
             if($respuesta)  
             {
-                $variable="logiado";
-                        die($variable);
-                         
+                
                 //$pass ="16623877";
                 //$login="9ff6998d255669510c70989ec9e0dd5b70d9acc44d6e7aaef4974abcab4d6663";
 
                 //die(sha1($this->input->post("pass",true)));
-                $datos=$this->usuarios_model->logueo( $this->input->post("login",true),$this->input->post("pass"));
+                $datos=$this->usuarios_model->logueo( $this->input->post("login"));
                 //echo $datos;exit;
-                   if($datos==1)
+               // $permiso=$this->usuarios_model->permiso($this->input->post("login"));
+                   if($datos==1 )
                    {    
-                        $variable="logiado";
-                        die($variable);
+                       
                         $this->session->set_userdata("taller_ci");
                         $this->session->set_userdata('login', $this->input->post('login',true));
-                        //$this->session->set_userdata('saludo','hola te saludo desde la sessión');
-                        //$session_id = $this->session->userdata('login');
-                        //echo $this->session->userdata('saludo');
-                        redirect(base_url().'usuarios',  301);
+                        redirect(base_url().'busquedas');
+                        
                    }else
                    {
                     $this->session->set_flashdata('ControllerMessage', 'Usuario y/o clave inválida.');
