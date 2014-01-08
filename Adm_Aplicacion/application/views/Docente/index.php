@@ -35,10 +35,12 @@
                             <div class="grid_2" id="eliminar"><input type="submit" name= "boton" value="Eliminar" id="<?=$dato->pk?>" class="eliminar"></div>
                             <div class="grid_2" id="editar"><input type="submit" name= "boton" value="Editar" id="<?=$dato->pk?>" class="editar"></div>
                         </div>
+                <?= form_close() ?>
                 <?php
                 endforeach;
                 ?>
-            
+            <?= form_open('Docentes/option/') ?>
+
             <div class="grid_12" id="agregar"><input type="submit" name= "boton" value="Agregar"  class="agregar" ></div>
             
         </div>
